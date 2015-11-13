@@ -12,16 +12,16 @@ import java.util.List;
  * @author pokotyamu
  */
 public class PSPLabel {
-    private String label;
+    private String name;
     private List<String> types;
 
-    public PSPLabel(String label, List<String> types) {
-        this.label = label;
+    public PSPLabel(String name, List<String> types) {
+        this.name = name;
         this.types = types;
     }
 
-    public String getLabel() {
-        return label;
+    public String getName() {
+        return name;
     }
 
     public List<String> getTypes() {
@@ -30,5 +30,15 @@ public class PSPLabel {
     
     public boolean existType(String type){
         return types.indexOf(type) > -1;
+    }
+
+
+    public boolean equals(PSPLabel label) {
+        boolean flag1 = this.name.equals(label.getName());
+        boolean flag2 = true;
+        for (String type : label.getTypes()) {
+            flag2 = flag2 && this.types.contains(type);
+        }
+        return flag1 && flag2;
     }
 }

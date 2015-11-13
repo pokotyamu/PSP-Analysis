@@ -15,26 +15,50 @@ import java.util.List;
  */
 public class Table {
     
-
-    private List<PSPLabel> rows;
+    private List<Cell> cells;
+    
+    private List<PSPLabel> keys;
     private List<PSPLabel> cols;
 
     public Table() {
-        rows = new ArrayList<>();
+        cells = new ArrayList<>();
+        keys = new ArrayList<>();
         cols = new ArrayList<>();
     }
+    
+    public void addData(List<PSPLabel> keys,List<PSPLabel> cols,Cell[] cells){
+        this.addLabels(keys, cols);
+        addAllCell(cells);
+    }
+    
+    private void addLabels(List<PSPLabel> keys, List<PSPLabel> cols) {
+        addLabel(this.keys,keys);
+        addLabel(this.cols, cols);
+    }
+    
+    private void addLabel(List<PSPLabel> addedLabels,List<PSPLabel> labels) {
+        for (PSPLabel label : labels) {
+            if(!this.isExistPSPLabel(addedLabels,label)){
+                addedLabels.add(label);
+            }
+        }
+    }
+    
+    private boolean isExistPSPLabel(List<PSPLabel> labels, PSPLabel label) {
+        boolean flag = true;
+        for (PSPLabel lb : labels) {
+            flag = flag && label.equals(lb);
+        }
+        return flag;
+    }
 
-    public Table(List<PSPLabel> rows, List<PSPLabel> cols) {
-        this.rows = rows;
-        this.cols = cols;
+    private void addAllCell(Cell[] cells) {
+        for (Cell cell : cells) {
+            this.addCell(cell);
+        }
     }
-    
-    public void addData(){
-        
+
+    private void addCell(Cell cell) {
+        this.cells.add(cell);
     }
-    
-    public void changeCell(String row,String col,Cell c){
-    
-    }
-    
 }
