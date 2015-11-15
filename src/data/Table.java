@@ -39,18 +39,26 @@ public class Table {
         return this.getDataSet(keyName, keys);
     }
     
+    public DataSet getKeyDataSet(String keyName, List<String> typeList) {
+        return this.getDataSet(keyName, this.getKeyDataSets(typeList));
+    }
+    
     public List<DataSet> getKeyDataSets(List<String> types){
         return this.getDataSet(types, keys);
     }
     
-    public DataSet getColDataSet(String dataName){
-        return this.getDataSet(dataName,cols);
+    public DataSet getColDataSet(String colName){
+        return this.getDataSet(colName,cols);
     }
     
-    public List<DataSet> getColDataSet(List<String> types){
+    public DataSet getColDataSet(String colName, List<String> typeList){
+        return this.getDataSet(colName, this.getColDataSets(typeList));
+    }
+
+    public List<DataSet> getColDataSets(List<String> types){
         return this.getDataSet(types, cols);
     }
-    
+     
     private DataSet getDataSet(String name, List<DataSet> targets) {
         DataSet ds = new DataSet();
         for (DataSet tg : targets) {
@@ -70,6 +78,4 @@ public class Table {
         }
         return ds;
     }
-    
-    
 }

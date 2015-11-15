@@ -58,7 +58,11 @@ public class DataSet {
     }
 
     public boolean isExistType(List<String> dataTypes) {
-        return this.dataTypes.contains(dataTypes);
+        boolean isHit = true;
+        for (String dataType : dataTypes) {
+            isHit = isHit && this.dataTypes.indexOf(dataType) > -1;
+        }
+        return isHit;
     }
 
     @Override
@@ -78,6 +82,5 @@ public class DataSet {
     public void addDataType(String dataType){
         this.dataTypes.add(dataType);
     }
-    
     
 }
