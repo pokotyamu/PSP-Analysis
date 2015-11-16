@@ -15,50 +15,22 @@ import java.util.List;
  */
 public class Table {
     
-    private List<DataSet> keys;
     private List<DataSet> cols;
     
     public Table() {
-        keys = new ArrayList<>();
         cols = new ArrayList<>();
     }
     
-    public void addKey(DataSet ds){
-        keys.add(ds);
-    }
     
     public void addCol(DataSet ds){
         cols.add(ds);
     }
     
-    public DataSet getKeyDataSet(int index){
-        return keys.get(index);
-    }
     
-    public DataSet getKeyDataSet(String keyName){
-        return this.getDataSet(keyName, keys);
-    }
-    
-    public DataSet getKeyDataSet(String keyName, List<String> typeList) {
-        return this.getDataSet(keyName, this.getKeyDataSets(typeList));
-    }
-    
-    public List<DataSet> getKeyDataSets(List<String> types){
-        return this.getDataSet(types, keys);
-    }
-    
-    public DataSet getColDataSet(String colName){
+    public DataSet getDataSet(String colName){
         return this.getDataSet(colName,cols);
     }
-    
-    public DataSet getColDataSet(String colName, List<String> typeList){
-        return this.getDataSet(colName, this.getColDataSets(typeList));
-    }
 
-    public List<DataSet> getColDataSets(List<String> types){
-        return this.getDataSet(types, cols);
-    }
-     
     private DataSet getDataSet(String name, List<DataSet> targets) {
         DataSet ds = new DataSet();
         for (DataSet tg : targets) {
@@ -68,14 +40,26 @@ public class Table {
         }
         return ds;
     }
-
-    private List<DataSet> getDataSet(List<String> types, List<DataSet> targets) {
-        List<DataSet> ds = new ArrayList<>();
-        for (DataSet tg  : targets) {
-            if (tg.isExistType(types)) {
-                ds.add(tg);
+    
+    public void sort(int key,String dataName){
+        DataSet ds = this.getDataSet(dataName);
+        if(key > 0){//昇順
+            for(int i = 0; i < ds.size()-1;i++){
+                for(int j = i+1; j < ds.size();j++){
+                    if(ds.getIntCell(i) > ds.getIntCell(j)){
+                        switchCell(i, j);
+                    }
+                }
             }
+        }else{//降順
+            
         }
-        return ds;
+    
+    }
+    
+    private void switchCell(int a,int b){
+        for (DataSet col : cols) {
+            col.switchCell(a, b);
+        }
     }
 }

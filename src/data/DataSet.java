@@ -14,37 +14,24 @@ import java.util.List;
  */
 public class DataSet {
     private String dataName;
-    private List<String> dataTypes;
     
     private List<Cell> cells;
 
     //init
     public DataSet(){
         this.dataName = "";
-        this.dataTypes = new ArrayList<>();
         this.cells = new ArrayList<>();
     }
     
     public DataSet(String dataName) {
         this.dataName = dataName;
-        this.dataTypes = new ArrayList<>();
         this.cells = new ArrayList<>();
     }
     
-    public DataSet(String dataName, List<String> dataTypes) {
-        this.dataName = dataName;
-        this.dataTypes = dataTypes;
-        this.cells = new ArrayList<>();
-    }
-
     public String getDataName() {
         return dataName;
     }
 
-    public List<String> getDataTypes() {
-        return dataTypes;
-    }
-    
     public void addCell(Cell c){
         cells.add(c);
     }
@@ -57,30 +44,34 @@ public class DataSet {
         return this.dataName.equals(dataName);
     }
 
-    public boolean isExistType(List<String> dataTypes) {
-        boolean isHit = true;
-        for (String dataType : dataTypes) {
-            isHit = isHit && this.dataTypes.indexOf(dataType) > -1;
-        }
-        return isHit;
-    }
 
     @Override
     public String toString() {
     
         StringBuilder strb = new StringBuilder();
-        
         strb.append("dataName : ");
         strb.append(dataName);
-        strb.append("\ndataTypes : ");
-        strb.append(dataTypes.toString());
         strb.append("\nCell : ");
         strb.append(cells);
         return strb.toString();
     }
 
-    public void addDataType(String dataType){
-        this.dataTypes.add(dataType);
+    public void switchCell(int a, int b) {
+        Cell tempc = this.cells.get(a);
+        this.cells.set(a, cells.get(b));
+        this.cells.set(b, tempc);
     }
-    
+
+    public int size() {
+        return this.cells.size();
+    }
+
+    public Cell getCell(int i) {
+        return this.cells.get(i);
+    }
+
+    public int getIntCell(int i) {
+        return Integer.valueOf(cells.get(i).getValue().toString());
+    }
+
 }
