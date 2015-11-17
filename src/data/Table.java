@@ -28,6 +28,13 @@ public class Table {
         cols.add(ds);
     }
     
+    //まとめて追加
+    public void addCols(List<DataSet> cols) {
+        for (DataSet col : cols) {
+            this.cols.add(col);
+        }
+    }
+    
     public void setProjectID(DataSet ds){
         this.projectIDds = ds;
     }
@@ -89,4 +96,5 @@ public class Table {
         }
         this.projectIDds.switchCell(a,b);
     }
+
 }
