@@ -29,6 +29,10 @@ public class Cell {
         return value.equals(c.getValue());
     }
     
+    public int getIntValue() {
+        return Integer.valueOf(value.toString());
+    }
+    
     @Override
     public String toString() {
         return value.toString();
