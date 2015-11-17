@@ -37,8 +37,6 @@ public class TestMain {
         rowDS.addCell(c4);
         rowDS.addCell(new Cell(402));
         
-        //tb.sort(1,"test");
-        
         System.out.println(ds);
         System.out.println(rowDS);
     }

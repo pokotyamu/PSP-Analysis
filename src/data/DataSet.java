@@ -31,7 +31,7 @@ public class DataSet {
     public String getDataName() {
         return dataName;
     }
-
+    
     public void addCell(Cell c){
         cells.add(c);
     }
@@ -42,18 +42,6 @@ public class DataSet {
     
     public boolean isName(String dataName) {
         return this.dataName.equals(dataName);
-    }
-
-
-    @Override
-    public String toString() {
-    
-        StringBuilder strb = new StringBuilder();
-        strb.append("dataName : ");
-        strb.append(dataName);
-        strb.append("\nCell : ");
-        strb.append(cells);
-        return strb.toString();
     }
 
     public void switchCell(int a, int b) {
@@ -71,7 +59,17 @@ public class DataSet {
     }
 
     public int getIntCell(int i) {
-        return Integer.valueOf(cells.get(i).getValue().toString());
+        return cells.get(i).getIntValue();
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder strb = new StringBuilder();
+        strb.append("dataName : ");
+        strb.append(dataName);
+        strb.append("\nCell : ");
+        strb.append(cells);
+        return strb.toString();
     }
 
 }

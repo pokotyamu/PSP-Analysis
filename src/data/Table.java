@@ -21,26 +21,24 @@ public class Table {
         cols = new ArrayList<>();
     }
     
-    
+    //DataSetの順番については正しく並べ替えられているものとする
     public void addCol(DataSet ds){
         cols.add(ds);
     }
     
-    
-    public DataSet getDataSet(String colName){
-        return this.getDataSet(colName,cols);
-    }
-
-    private DataSet getDataSet(String name, List<DataSet> targets) {
+    public DataSet getDataSet(String name) {
         DataSet ds = new DataSet();
-        for (DataSet tg : targets) {
-            if(tg.isName(name)){
-                ds = tg;
+        for (DataSet col : cols) {
+            if(col.isName(name)){
+                return col;
             }
         }
         return ds;
     }
-    
+
+    //テーブル列内のソート関数
+    //keyが1の時：降順
+    //keyが−1の時：昇順
     public void sort(int key,String dataName){
         DataSet ds = this.getDataSet(dataName);
         if(key > 0){//昇順
@@ -52,11 +50,17 @@ public class Table {
                 }
             }
         }else{//降順
-            
+            for(int i = 0; i < ds.size()-1;i++){
+                for(int j = i+1; j < ds.size();j++){
+                    if(ds.getIntCell(i) < ds.getIntCell(j)){
+                        switchCell(i, j);
+                    }
+                }
+            }
         }
-    
     }
     
+    //その他の全ての列に対しても並べ替えを行う
     private void switchCell(int a,int b){
         for (DataSet col : cols) {
             col.switchCell(a, b);
