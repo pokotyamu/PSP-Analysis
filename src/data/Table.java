@@ -16,10 +16,11 @@ import java.util.List;
 public class Table {
     
     private List<DataSet> cols;
-    private DataSet projectID;
+    private DataSet projectIDds;
+    
     public Table() {
         cols = new ArrayList<>();
-        projectID = new DataSet("ProjectID");
+        projectIDds = new DataSet("ProjectID");
     }
     
     //DataSetの順番については正しく並べ替えられているものとする
@@ -27,12 +28,31 @@ public class Table {
         cols.add(ds);
     }
     
+    //まとめて追加
+    public void addCols(List<DataSet> cols) {
+        for (DataSet col : cols) {
+            this.cols.add(col);
+        }
+    }
+    
     public void setProjectID(DataSet ds){
-        this.projectID = ds;
+        this.projectIDds = ds;
     }
     
     public DataSet getProjectID(){
-        return projectID;
+        return projectIDds;
+    }
+    
+    public int getProjectIDIndex(Cell c){
+        return projectIDds.getCellIndex(c);
+    }
+    
+    public int getProjectIDIndex(Object ob){
+        return projectIDds.getCellIndex(new Cell(ob));
+    }
+    
+    public int getProjectIDIndex(int id){
+        return projectIDds.getCellIndex(new Cell(id));
     }
     
     public DataSet getDataSet(String name) {
@@ -74,6 +94,7 @@ public class Table {
         for (DataSet col : cols) {
             col.switchCell(a, b);
         }
-        this.projectID.switchCell(a,b);
+        this.projectIDds.switchCell(a,b);
     }
+
 }

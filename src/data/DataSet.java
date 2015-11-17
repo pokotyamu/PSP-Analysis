@@ -13,8 +13,8 @@ import java.util.List;
  * @author pokotyamu
  */
 public class DataSet {
-    private String dataName;
     
+    private String dataName;
     private List<Cell> cells;
 
     //init
@@ -60,6 +60,10 @@ public class DataSet {
 
     public int getIntCell(int i) {
         return cells.get(i).getIntValue();
+    }
+    
+    public int getCellIndex(Cell c) {
+        return cells.indexOf(c);
     }
     
     @Override
