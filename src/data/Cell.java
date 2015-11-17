@@ -25,6 +25,10 @@ public class Cell {
         this.value = value;
     }
 
+    public boolean equals(Cell c){
+        return value.equals(c.getValue());
+    }
+    
     @Override
     public String toString() {
         return value.toString();

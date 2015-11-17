@@ -15,67 +15,65 @@ import java.util.List;
  */
 public class Table {
     
-    private List<DataSet> keys;
     private List<DataSet> cols;
-    
+    private DataSet projectID;
     public Table() {
-        keys = new ArrayList<>();
         cols = new ArrayList<>();
+        projectID = new DataSet("ProjectID");
     }
     
-    public void addKey(DataSet ds){
-        keys.add(ds);
-    }
-    
+    //DataSetの順番については正しく並べ替えられているものとする
     public void addCol(DataSet ds){
         cols.add(ds);
     }
     
-    public DataSet getKeyDataSet(int index){
-        return keys.get(index);
+    public void setProjectID(DataSet ds){
+        this.projectID = ds;
     }
     
-    public DataSet getKeyDataSet(String keyName){
-        return this.getDataSet(keyName, keys);
+    public DataSet getProjectID(){
+        return projectID;
     }
     
-    public DataSet getKeyDataSet(String keyName, List<String> typeList) {
-        return this.getDataSet(keyName, this.getKeyDataSets(typeList));
-    }
-    
-    public List<DataSet> getKeyDataSets(List<String> types){
-        return this.getDataSet(types, keys);
-    }
-    
-    public DataSet getColDataSet(String colName){
-        return this.getDataSet(colName,cols);
-    }
-    
-    public DataSet getColDataSet(String colName, List<String> typeList){
-        return this.getDataSet(colName, this.getColDataSets(typeList));
-    }
-
-    public List<DataSet> getColDataSets(List<String> types){
-        return this.getDataSet(types, cols);
-    }
-     
-    private DataSet getDataSet(String name, List<DataSet> targets) {
+    public DataSet getDataSet(String name) {
         DataSet ds = new DataSet();
-        for (DataSet tg : targets) {
-            if(tg.isName(name)){
-                ds = tg;
+        for (DataSet col : cols) {
+            if(col.isName(name)){
+                return col;
             }
         }
         return ds;
     }
 
-    private List<DataSet> getDataSet(List<String> types, List<DataSet> targets) {
-        List<DataSet> ds = new ArrayList<>();
-        for (DataSet tg  : targets) {
-            if (tg.isExistType(types)) {
-                ds.add(tg);
+    //テーブル列内のソート関数
+    //keyが1の時：降順
+    //keyが−1の時：昇順
+    public void sort(int key,String dataName){
+        DataSet ds = this.getDataSet(dataName);
+        if(key > 0){//昇順
+            for(int i = 0; i < ds.size()-1;i++){
+                for(int j = i+1; j < ds.size();j++){
+                    if(ds.getIntCell(i) > ds.getIntCell(j)){
+                        switchCell(i, j);
+                    }
+                }
+            }
+        }else{//降順
+            for(int i = 0; i < ds.size()-1;i++){
+                for(int j = i+1; j < ds.size();j++){
+                    if(ds.getIntCell(i) < ds.getIntCell(j)){
+                        switchCell(i, j);
+                    }
+                }
             }
         }
-        return ds;
+    }
+    
+    //その他の全ての列に対しても並べ替えを行う
+    private void switchCell(int a,int b){
+        for (DataSet col : cols) {
+            col.switchCell(a, b);
+        }
+        this.projectID.switchCell(a,b);
     }
 }

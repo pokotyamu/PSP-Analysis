@@ -20,41 +20,24 @@ public class TestMain {
         Table tb = new Table();
         DataSet ds = new DataSet("test");
         DataSet ds2 = new DataSet("piyo");
-        DataSet rowDS = new DataSet("400");
-        DataSet rowDS2 = new DataSet("401");
+        DataSet rowDS = new DataSet("ProjectID");
 
         tb.addCol(ds);
-        tb.addCol(ds2);
-        tb.addKey(rowDS);
+        tb.addCol(rowDS);
         
-        ds.addDataType("PLAN");
-        ds.addDataType("REVIEW");
-
-        ds2.addDataType("PLAN");
-        ds2.addDataType("REVIEW");
+        Cell c1 = new Cell(120);
+        Cell c2 = new Cell(10);
+        Cell c3 = new Cell(400);
+        Cell c4 = new Cell(401);
         
-        rowDS.addDataType("ProjectID");
-        rowDS.addDataType("Interim");
-
-        Cell c1 = new Cell(100);
-        Cell c2 = new Cell(120);
         ds.addCell(c1);
-        ds2.addCell(c2);
-        rowDS.addCell(c1);
-        rowDS.addCell(c2);
-
-        List<String> list = new ArrayList<>();
-        list.add("PLAN");list.add("REVIEW");
-
-        List<String> list1 = new ArrayList<>();
-        list1.add("ProjectID");
-
-        System.out.println(tb.getColDataSets(list));
-        DataSet dss = tb.getKeyDataSet("400",list1);
-        System.out.println(dss);
-        c2.setValue(200000);
-        System.out.println("--------");
-        System.out.println(tb.getColDataSets(list));
-        System.out.println(dss);
+        ds.addCell(c2);
+        ds.addCell(new Cell(15));
+        rowDS.addCell(c3);
+        rowDS.addCell(c4);
+        rowDS.addCell(new Cell(402));
+        
+        System.out.println(ds);
+        System.out.println(rowDS);
     }
 }
