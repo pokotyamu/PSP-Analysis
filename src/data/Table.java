@@ -16,14 +16,23 @@ import java.util.List;
 public class Table {
     
     private List<DataSet> cols;
-    
+    private DataSet projectID;
     public Table() {
         cols = new ArrayList<>();
+        projectID = new DataSet("ProjectID");
     }
     
     //DataSetの順番については正しく並べ替えられているものとする
     public void addCol(DataSet ds){
         cols.add(ds);
+    }
+    
+    public void setProjectID(DataSet ds){
+        this.projectID = ds;
+    }
+    
+    public DataSet getProjectID(){
+        return projectID;
     }
     
     public DataSet getDataSet(String name) {
@@ -65,5 +74,6 @@ public class Table {
         for (DataSet col : cols) {
             col.switchCell(a, b);
         }
+        this.projectID.switchCell(a,b);
     }
 }
