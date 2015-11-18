@@ -16,12 +16,13 @@ import java.util.List;
  * @author pokotyamu
  */
 public class TestMain {
+/*
     public static void main(String[] args) {
         Table tb = new Table();
         DataSet ds = new DataSet("test");
         DataSet ds2 = new DataSet("piyo");
         DataSet rowDS = new DataSet("ProjectID");
-
+        
         tb.addCol(ds);
         tb.addCol(rowDS);
         
@@ -40,4 +41,5 @@ public class TestMain {
         System.out.println(ds);
         System.out.println(rowDS);
     }
+    */
 }
