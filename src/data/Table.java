@@ -97,4 +97,16 @@ public class Table {
         this.projectIDds.switchCell(a,b);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder strb = new StringBuilder();
+        strb.append("=Key=\n");
+        strb.append(projectIDds);
+        strb.append("\n=Cols=\n");
+        for (DataSet col : cols) {
+            strb.append(col);
+            strb.append("\n");
+        }
+        return strb.toString();
+    }
 }
