@@ -64,6 +64,10 @@ public class Table {
         }
         return ds;
     }
+    
+    public Cell getCell(String colName, int i){
+        return this.getDataSet(colName).getCell(i);
+    }
 
     //テーブル列内のソート関数
     //keyが1の時：降順
@@ -73,7 +77,7 @@ public class Table {
         if(key > 0){//昇順
             for(int i = 0; i < ds.size()-1;i++){
                 for(int j = i+1; j < ds.size();j++){
-                    if(ds.getIntCell(i) > ds.getIntCell(j)){
+                    if(ds.getNumCell(i) > ds.getNumCell(j)){
                         switchCell(i, j);
                     }
                 }
@@ -81,7 +85,7 @@ public class Table {
         }else{//降順
             for(int i = 0; i < ds.size()-1;i++){
                 for(int j = i+1; j < ds.size();j++){
-                    if(ds.getIntCell(i) < ds.getIntCell(j)){
+                    if(ds.getNumCell(i) < ds.getNumCell(j)){
                         switchCell(i, j);
                     }
                 }
@@ -97,4 +101,16 @@ public class Table {
         this.projectIDds.switchCell(a,b);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder strb = new StringBuilder();
+        strb.append("=Key=\n");
+        strb.append(projectIDds);
+        strb.append("\n=Cols=\n");
+        for (DataSet col : cols) {
+            strb.append(col);
+            strb.append("\n");
+        }
+        return strb.toString();
+    }
 }

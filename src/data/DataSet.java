@@ -39,7 +39,7 @@ public class DataSet {
     public void setCell(int index,Cell c){
         cells.set(index, c);
     }
-    
+
     public boolean isName(String dataName) {
         return this.dataName.equals(dataName);
     }
@@ -49,7 +49,7 @@ public class DataSet {
         this.cells.set(a, cells.get(b));
         this.cells.set(b, tempc);
     }
-
+    
     public int size() {
         return this.cells.size();
     }
@@ -58,8 +58,8 @@ public class DataSet {
         return this.cells.get(i);
     }
 
-    public int getIntCell(int i) {
-        return cells.get(i).getIntValue();
+    public double getNumCell(int i) {
+        return cells.get(i).getNumValue();
     }
     
     public int getCellIndex(Cell c) {
@@ -75,5 +75,4 @@ public class DataSet {
         strb.append(cells);
         return strb.toString();
     }
-
 }
