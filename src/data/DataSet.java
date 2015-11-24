@@ -39,7 +39,7 @@ public class DataSet {
     public void setCell(int index,Cell c){
         cells.set(index, c);
     }
-    
+
     public boolean isName(String dataName) {
         return this.dataName.equals(dataName);
     }
@@ -49,7 +49,7 @@ public class DataSet {
         this.cells.set(a, cells.get(b));
         this.cells.set(b, tempc);
     }
-
+    
     public int size() {
         return this.cells.size();
     }

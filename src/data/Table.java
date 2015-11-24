@@ -64,6 +64,10 @@ public class Table {
         }
         return ds;
     }
+    
+    public Cell getCell(String colName, int i){
+        return this.getDataSet(colName).getCell(i);
+    }
 
     //テーブル列内のソート関数
     //keyが1の時：降順
