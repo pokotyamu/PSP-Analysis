@@ -9,6 +9,9 @@ import data.Table;
 import data.TableFactory;
 import function.AbstractFunction;
 import function.AddFunction;
+import function.DivFunction;
+import function.MulFunction;
+import function.SubFunction;
 import parser.Parser;
 import parser.TestParser;
 
@@ -24,6 +27,12 @@ public class TestMain {
         System.out.println(tb);
         AbstractFunction add = new AddFunction();
         tb = add.function(tb, "PlanA", "PlanT");
+        AbstractFunction sub = new SubFunction();
+        tb = sub.function(tb, "PlanT", "PlanA");
+        AbstractFunction mul = new MulFunction();
+        tb = mul.function(tb, "PlanA", "PlanT");
+        AbstractFunction div = new DivFunction();
+        tb = div.function(tb, "PlanT", "PlanA");
         System.out.println(tb);
     }
 
