@@ -21,7 +21,7 @@ public class AddFunction extends AbstractFunction{
 
     @Override
     public Cell function(Cell c1, Cell c2) {
-        return new Cell(c1.getIntValue() + c2.getIntValue());
+        return new Cell(c1.getNumValue() + c2.getNumValue());
     }
     
 }

@@ -22,11 +22,8 @@ public class DivFunction extends AbstractFunction{
     public Cell function(Cell c1, Cell c2) {
         Cell c = new Cell(0);
         try {
-            System.out.println(c1.getIntValue());
-            System.out.println(c2.getIntValue());
-            return new Cell(c1.getIntValue()/c2.getIntValue());
+            return new Cell(c1.getNumValue()/c2.getNumValue());
         } catch (ArithmeticException e) {
-            System.out.println("hoge");
             return c;
         }
     }

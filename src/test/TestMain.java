@@ -32,7 +32,7 @@ public class TestMain {
         AbstractFunction mul = new MulFunction();
         tb = mul.function(tb, "PlanA", "PlanT");
         AbstractFunction div = new DivFunction();
-        tb = div.function(tb, "PlanT", "PlanA");
+        tb = div.function(tb, "PlanA", "PlanT");
         System.out.println(tb);
     }
 

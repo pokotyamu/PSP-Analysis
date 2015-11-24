@@ -58,8 +58,8 @@ public class DataSet {
         return this.cells.get(i);
     }
 
-    public int getIntCell(int i) {
-        return cells.get(i).getIntValue();
+    public double getNumCell(int i) {
+        return cells.get(i).getNumValue();
     }
     
     public int getCellIndex(Cell c) {

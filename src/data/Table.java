@@ -77,7 +77,7 @@ public class Table {
         if(key > 0){//昇順
             for(int i = 0; i < ds.size()-1;i++){
                 for(int j = i+1; j < ds.size();j++){
-                    if(ds.getIntCell(i) > ds.getIntCell(j)){
+                    if(ds.getNumCell(i) > ds.getNumCell(j)){
                         switchCell(i, j);
                     }
                 }
@@ -85,7 +85,7 @@ public class Table {
         }else{//降順
             for(int i = 0; i < ds.size()-1;i++){
                 for(int j = i+1; j < ds.size();j++){
-                    if(ds.getIntCell(i) < ds.getIntCell(j)){
+                    if(ds.getNumCell(i) < ds.getNumCell(j)){
                         switchCell(i, j);
                     }
                 }

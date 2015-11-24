@@ -29,8 +29,8 @@ public class Cell {
         return value.equals(c.getValue());
     }
     
-    public int getIntValue() {
-        return Integer.valueOf(value.toString());
+    public double getNumValue() {
+        return Double.valueOf(value.toString());
     }
     
     @Override
