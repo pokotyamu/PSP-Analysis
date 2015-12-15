@@ -21,6 +21,7 @@ import parser.TestParser;
  */
 public class TestMain {
 
+    /*
     public static void main(String[] args) {
         Parser p = new TestParser();
         Table tb = TableFactory.createTable(p);
@@ -35,5 +36,6 @@ public class TestMain {
         tb = div.function(tb, "PlanA", "PlanT");
         System.out.println(tb);
     }
+    */
 
 }
