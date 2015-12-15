@@ -45,8 +45,15 @@ public class Main {
     AbstractFunction div = new DivFunction();
     tb = div.function(tb, "PlanA", "PlanT");
     
-    get("/analysis",(req,res) -> tb.toString());
-    
-    get("/analysis",(req,res) -> "hoge");
+    get("/test/*/sample/*",(request,respons) -> {
+        String[] splat = request.splat();
+        /*
+        String text = "splat().length = " + splat.length + "<br>"
+                + "splat()[0] = " + splat[0] + "<br>"
+                + "splat()[1] = " + splat[1];
+        */
+        String text = "goehghoeghoehg";
+        return text;
+  });
   }
 }
