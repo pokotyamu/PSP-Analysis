@@ -109,8 +109,8 @@ public class Main {
         request.session().attribute("json",obj.toString());
         
         System.out.println(request.session().attributes());
-//        respons.redirect("https://psp-analysis.herokuapp.com/charts/create");
-        respons.redirect("localhost:3000/charts/create");        
+        respons.redirect("https://psp-analysis.herokuapp.com/charts/create");
+//        respons.redirect("/charts/create");        
         return obj;
     });
   }
