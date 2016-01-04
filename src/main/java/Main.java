@@ -1,3 +1,4 @@
+import main.java.Hoge;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -20,8 +21,14 @@ import function.AddFunction;
 import function.DivFunction;
 import function.MulFunction;
 import function.SubFunction;
+import net.arnx.jsonic.JSON;
 import parser.Parser;
 import parser.TestParser;
+
+
+
+//import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 
 
@@ -45,15 +52,66 @@ public class Main {
     AbstractFunction div = new DivFunction();
     tb = div.function(tb, "PlanA", "PlanT");
     
-    get("/test/*/sample/*",(request,respons) -> {
-        String[] splat = request.splat();
-        /*
-        String text = "splat().length = " + splat.length + "<br>"
-                + "splat()[0] = " + splat[0] + "<br>"
-                + "splat()[1] = " + splat[1];
-        */
-        String text = "goehghoeghoehg";
-        return text;
-  });
+    
+    
+    
+    
+    post("/test/:name","application/json",(request,respons) -> {
+        System.out.println("===start===");
+        String json = "{\n" +
+"    \"graph1\" : {\n" +
+"        \"title\" : \"Title sample\",\n" +
+"        \"type\" : \"line\",\n" +
+"        \"xAxis\" : {\n" +
+"            \"title\" : {\n" +
+"                \"text\" : \"xTitle\",\n" +
+"                \"margin\" : 20\n" +
+"            },\n" +
+"            \"categories\" : [400,401,402,403,404,405,406,407,408]\n" +
+"        },\n" +
+"        \"yAxis\" : {\n" +
+"            \"title\" : {\n" +
+"                \"text\" : \"yTitle\",\n" +
+"                \"margin\" : 20\n" +
+"            }\n" +
+"        },\n" +
+"        \"series\" : {\n" +
+"            \"name\" : \"ActMinTotal\",\n" +
+"            \"data\" : [500,600,550,630,800,920,1100,300]\n" +
+"        }\n" +
+"    },\n" +
+"    \"grap\" : {\n" +
+"        \"title\" : \"Title sample\",\n" +
+"        \"type\" : \"column\",\n" +
+"        \"xAxis\" : {\n" +
+"            \"title\" : {\n" +
+"                \"text\" : \"xTitle\",\n" +
+"                \"margin\" : 20\n" +
+"            },\n" +
+"            \"categories\" : [400,401,402,403,404,405,406,407,408]\n" +
+"        },\n" +
+"        \"yAxis\" : {\n" +
+"            \"title\" : {\n" +
+"                \"text\" : \"yTitle\",\n" +
+"                \"margin\" : 20\n" +
+"            }\n" +
+"        },\n" +
+"        \"series\" : {\n" +
+"            \"name\" : \"ActMinTotal\",\n" +
+"            \"data\" : [500,600,550,630,800,920,1100,3000]\n" +
+"        }\n" +
+"    }\n" +
+"}";
+                
+        Object obj = JSON.decode(json);
+        System.out.println(obj);
+        request.session(true);
+        request.session().attribute("json",obj.toString());
+        
+        System.out.println(request.session().attributes());
+//        respons.redirect("https://psp-analysis.herokuapp.com/charts/create");
+        respons.redirect("localhost:3000/charts/create");        
+        return obj;
+    });
   }
 }
