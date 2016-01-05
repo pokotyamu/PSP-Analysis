@@ -107,8 +107,7 @@ public class Main {
         System.out.println(obj);
         request.session(true);
         request.session().attribute("json",obj.toString());
-        
-        System.out.println(request.session().attributes());
+        respons.cookie("json",obj.toString());
         respons.redirect("https://psp-analysis.herokuapp.com/charts/create",307);
         return obj;
     });
