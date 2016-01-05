@@ -65,7 +65,7 @@ public class Main {
 
     
     post("/test/:name","application/json",(request, respons) -> {
-        System.out.println("===start===");
+
         String json = "{" +
 "    \"graph1\" : {" +
 "        \"title\" : \"Title sample\"," +
