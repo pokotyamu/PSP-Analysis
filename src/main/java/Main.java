@@ -112,6 +112,6 @@ public class Main {
         return obj;
     });
     
-    get("/test","application/json",(request,response) -> obj.toString());
+    get("/json","application/json",(request,response) -> obj.toString());
   }
 }
