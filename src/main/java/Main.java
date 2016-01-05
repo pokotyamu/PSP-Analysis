@@ -34,7 +34,7 @@ import parser.TestParser;
 
 
 public class Main {
-
+    static Object obj = "";
   public static void main(String[] args) {
 
     port(Integer.valueOf(System.getenv("PORT")));
@@ -54,7 +54,7 @@ public class Main {
     
     
     
-    
+
     
     post("/test/:name","application/json",(request,respons) -> {
         System.out.println("===start===");
@@ -103,13 +103,15 @@ public class Main {
 "    }\n" +
 "}";
                 
-        Object obj = JSON.decode(json);
+        obj = JSON.decode(json);
         System.out.println(obj);
-        request.session(true);
-        request.session().attribute("json",obj.toString());
-        respons.cookie("json",obj.toString());
-        respons.redirect("https://psp-analysis.herokuapp.com/charts/create/"+obj.toString(),307);
+//        request.session(true);
+//        request.session().attribute("json",obj.toString());
+//        respons.cookie("json",obj.toString());
+        respons.redirect("https://psp-analysis.herokuapp.com/charts/create/",307);
         return obj;
     });
+    
+    get("/test","application/json",(request,response) -> obj.toString());
   }
 }
